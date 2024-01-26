@@ -51,7 +51,7 @@ public class Program
         app.UseAntiforgery();
 
         // API Endpoints
-        app.MapGet("/api", (MassTransitEndpoint endpoint) => endpoint.GetAsync());
+        app.MapGet("/api/chat", (MassTransitEndpoint endpoint) => endpoint.GetAsync());
 
         // SignalR
         app.UseResponseCompression();
