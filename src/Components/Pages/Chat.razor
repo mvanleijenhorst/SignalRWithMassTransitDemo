@@ -1,6 +1,7 @@
 ﻿@page "/chat"
 @rendermode InteractiveServer
 @using Microsoft.AspNetCore.SignalR.Client
+@using SignalRBlazorDemo.MassTransitExample
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
@@ -41,7 +42,7 @@
             .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
             .Build();
 
-        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        hubConnection.On<string, string>(nameof(ChatEvent), (user, message) =>
         {
             var encodedMsg = $"{user}: {message}";
             messages.Add(encodedMsg);

@@ -1,7 +1,7 @@
 ﻿using MassTransit;
-using MassTransit.Transports;
-using Microsoft.AspNetCore.Mvc;
+using MassTransit.SignalR.Contracts;
 using SignalRBlazorDemo.MassTransitExample;
+using SignalRBlazorDemo.SignalR;
 
 namespace SignalRBlazorDemo.Endpoints;
 
@@ -15,10 +15,12 @@ public class MassTransitEndpoint
     }
 
 
-    public async Task<string> GetAsync()
+    public async Task<string> GetChat()
     {
         var message = new ChatEvent("MassTransit", "Hello from MassTransit");
         await _publishEndpoint.Publish(message);
         return "Message send";
     }
 }
+
+

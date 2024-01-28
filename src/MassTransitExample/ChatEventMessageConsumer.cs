@@ -11,7 +11,7 @@ public class ChatEventMessageConsumer(IHubContext<ChatHub> hubContext)
 
     public async Task Consume(ConsumeContext<ChatEvent> context)
     {
-        await _hubContext.Clients.All.SendAsync("ReceiveMessage", context.Message.User, context.Message.Content);
+        await _hubContext.Clients.All.SendAsync(nameof(ChatEvent), context.Message.User, context.Message.Content);
     }
 }
 
